@@ -1,0 +1,5 @@
+/venv
+/Test/__pycache__
+/Test/migrations/__pycache__
+/Test/models/__pycache__
+/Test/views/__pycache__
