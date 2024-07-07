@@ -1,0 +1,26 @@
+{% extends "header.html" %}
+
+{% block title %}
+Test Series
+{% endblock title %}
+
+{% block content %}
+
+
+{% for test in tests %}
+<form action="/test_series/" method="post">
+{% csrf_token %}
+<div class="card w-100 mb-3">
+    <div class="card-body">
+      <h5 class="card-title fw-bold">{{test.Name}}</h5>
+          <p class="card-text text-primary small flex">{{test.Total_Marks}} Marks {{test.num_Questions}} Questions {{test.Timing}} min 
+                <input class="w3-right w3-right-align btn btn-outline-dark" type="submit" value="      Start      ">
+                <input class="w3-right w3-right-align btn btn-outline-dark" name="testid" type="text" value="{{test.id}}" hidden>
+            </p>
+        </div>
+    </div>
+</form>
+{% endfor %}
+
+
+{% endblock content %}

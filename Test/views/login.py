@@ -20,25 +20,35 @@ class Login(View):
 
         def isExist(Email):
             try:
-                if (User.objects.get(Email=Email) and Student.objects.get(Email=(User.objects.get(Email=Email)))):
+                if (User.objects.get(Email=Email)):
                     return True
             except:
                 return False
             
         if(isExist(Email)):
-            user = User.objects.get(Email=Email)
-            flag = check_password(Password, user.Password)
+            try:
+                if(Student.objects.get(Email=(User.objects.get(Email=Email)))):
+                    user = User.objects.get(Email=Email)
+                    flag = check_password(Password, user.Password)
+                else:
+                    request.session['email']
+                    return redirect('signup')
+            except:
+                request.session['email']
+                return redirect('signup')
+
             
             if(flag):
+                stu = Student.objects.get(Email=user)
                 request.session['user'] = Email
+                request.session['name'] = stu.Fname
                 return redirect('home')
+            
             
 
 def Logout(request):
-    try:
-        request.session.clear()
-        return redirect('login')
-    except:
-        return redirect('login')
+    request.session.clear()
+    return redirect('login')
+    
 
 

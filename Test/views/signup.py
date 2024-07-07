@@ -34,4 +34,4 @@ class Signup(View):
                            Gender=Gender, Country=Country, State=State, City=City, Address=Address)
         student.save()
         request.session.clear()
-        return render(request, "login.html")
+        return redirect("login")
