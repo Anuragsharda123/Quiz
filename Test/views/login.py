@@ -16,7 +16,7 @@ class Login(View):
     def post(self, request):
         Email = request.POST.get('email')
         Password = request.POST.get('password')
-
+        flag = 0
 
         def isExist(Email):
             try:
@@ -38,11 +38,16 @@ class Login(View):
                 return redirect('signup')
 
             
-            if(flag):
-                stu = Student.objects.get(Email=user)
-                request.session['user'] = Email
-                request.session['name'] = stu.Fname
-                return redirect('home')
+        if(flag):
+            stu = Student.objects.get(Email=user)
+            request.session['user'] = Email
+            request.session['name'] = stu.Fname
+            return redirect('home')
+        else:
+            data = {
+            'error':'Invalid Credentials'
+            }
+            return render(request, 'login.html', data)
             
             
 

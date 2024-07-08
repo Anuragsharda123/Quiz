@@ -9,9 +9,20 @@ class Test_Series(View):
         data = {
             'tests':tests
         }
+        try:
+            del request.session['test']
+        except:
+            pass
         return render(request, 'test_series.html', data)
     
+
     def post(self, request):
         test = request.POST.get('testid')
         print(test)
-        return redirect('login')
+        try:
+            if(request.session['user']):
+               request.session['test'] = test
+               return redirect('instruction')
+
+        except:
+            return redirect('login')
