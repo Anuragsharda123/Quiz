@@ -16,33 +16,26 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark py-3">
+    <nav class="navbar navbar-expand-lg bg-dark py-4">
         <div class="container-fluid">
-            <a class="navbar-brand  text-light" href="#">Chemistry</a>
+            <a class="navbar-brand text-light" href="#">Chemistry</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" style="background-color: white;"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
                     <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="/"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="/instruction">General Instruction</a>
+                        <a class="nav-link text-light mx-4" href="/instruction">General Instruction</a>
                     </li>
 
                 </ul>
                 {% if request.session.user %}
                   <div class="dropdown">
-                    <a class="btn btn-outline-light dropdown-toggle mx-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{request.session.name}}
+                    <a class="nav-link link-light alert-heading mx-5 h1" href="instruction" >
+                      Test {{request.session.test}}
                     </a>
 
-                    <ul class="dropdown-menu btn btn-light">
-                      <li><a class="dropdown-item" href="/">Profile</a></li>
-                      <li><a class="dropdown-item" href="/">My Tests</a></li>
-                      <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                    </ul>
                   </div>
                 {% else %}
                 <a href="/login" style="text-decoration: none;"><button class="btn btn-outline-light me-4" type="button">Login</button></a>
