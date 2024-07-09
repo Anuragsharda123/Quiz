@@ -6,21 +6,21 @@ Test Series
 
 {% block content %}
 
-
-<form action="/test_series/" method="post">
+<br><br>
 {% for test in tests %}
+<form action="/test_series/" method="post">
 {% csrf_token %}
-<div class="card w-100 mb-3 w3-animate-zoom">
+<div class="card w-100 w3-animate-zoom">
     <div class="card-body ">
       <h5 class="card-title fw-bold w3-animate-zoom">{{test.Name}}</h5>
           <p class="card-text text-secondary small flex ">{{test.Total_Marks}} Marks {{test.num_Questions}} Questions {{test.Timing}} min 
+              <input class="w3-right w3-right-align btn btn-outline-dark "  name="testid" type="text" value="{{test.id}}" hidden>
                 <input class="w3-right w3-right-align btn btn-outline-dark" type="submit" value="      Start      ">
-                <input class="w3-right w3-right-align btn btn-outline-dark " name="testid" type="number" value="{{test.id}}" hidden>
             </p>
         </div>
     </div>
-{% endfor %}
 </form>
+{% endfor %}
 
 
 {% endblock content %}

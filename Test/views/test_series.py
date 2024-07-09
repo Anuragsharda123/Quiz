@@ -6,18 +6,18 @@ from ..models.question import Question
 class Test_Series(View):
     def get(self, request):
         tests = Test.objects.all()
-        data = {
-            'tests':tests
-        }
+        
         try:
             del request.session['test']
         except:
             pass
-        return render(request, 'test_series.html', data)
+        return render(request, 'test_series.html', {"tests":tests})
     
 
     def post(self, request):
+        
         test = request.POST.get('testid')
+        
         print(test)
         try:
             if(request.session['user']):
