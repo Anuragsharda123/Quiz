@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-dark py-4">
         <div class="container-fluid">
-            <a class="navbar-brand text-light" href="">Chemistry</a>
+            <a class="navbar-brand text-light" style="font-size: 150%;" href="">Chemistry</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" style="background-color: white;"></span>
             </button>
@@ -20,45 +20,68 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
                     <li class="nav-item">
-                        <a class="nav-link text-light mx-4" href="">General Instruction</a>
+                        <a style="font-size: 120%;" class="nav-link link-light alert-heading mx-5" href="/test" >
+                            Test {{request.session.test}}
+                        </a>
                     </li>
-
-                </ul>
-                {% if request.session.user %}
-                  <div class="dropdown">
-                    <a class="nav-link link-light alert-heading mx-5 h1" href="/test" >
-                      Test {{request.session.test}}
-                    </a>
-
-                  </div>
-                {% else %}
-                <a href="/login" style="text-decoration: none;"><button class="btn btn-outline-light me-4" type="button">Login</button></a>
-                <a href="/createuser" style="text-decoration: none;"><button class="btn btn-outline-light" type="button">Signup</button></a>
-                {% endif %}
+                    <li>
+                        <div id="timer">Time Left: <span id="time" class="text-light">{{ timing }}:00</span></div>
+                    </li>            
+                    
+                </ul>    
             </div>
         </div>
     </nav>
 
-<div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="abc">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="def">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="ghi">
-    </div>
-  </div>
-  <button class="carousel-control-prev " type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    Previous
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    Next
-  </button>
-</div>
+    <form action="" method="post">
+{% for question in questions %}
+    <div class="card container mt-5" >
+        <div class="card-body">
+          <h5 class="card-title">Question {{forloop.counter}}</h5>
+          <hr class="border border-danger border-1 opacity-100">
+          <p class="card-text">{{question.Question}}</p>
 
+          {% for answer in question.question.all %}
+          <input type="radio" id="answer{{ answer.id }}" name="question{{ question.id }}" value="{{ answer.id }}" ondblclick="this.checked=false">
+          <label for="answer{{ answer.id }}">{{ answer.Answer }}</label>
+          
+          <br>
+          <script>
+          $('#answer{{ answer.id }}').dblclick(function () {
+      
+            // Clear radio button
+            alert("Hello");
+            $("#answer{{ answer.id }}").prop('checked', false);
+        })
+         </script>
+          {% endfor %}
+          
+        </div>
+      </div>
+{% endfor %}
+</form>
+
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function()
+    {
+    const timerElement = document.getElementById('time');
+    let timeRemaining = quizDuration * 60; // Convert minutes to seconds
+
+    function updateTimer() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        if (timeRemaining > 0) {
+            timeRemaining--;
+        } else {
+            clearInterval(timerInterval);
+            // Auto-submit the form when time runs out
+            document.getElementById('quizForm').submit();
+        }
+    }})
+    const timerInterval = setInterval(updateTimer, 1000);
+</script> -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
