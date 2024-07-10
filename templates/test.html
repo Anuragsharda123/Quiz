@@ -24,11 +24,11 @@
                             Test {{request.session.test}}
                         </a>
                     </li>
-                    <li>
-                        <div id="timer">Time Left: <span id="time" class="text-light">{{ timing }}:00</span></div>
-                    </li>            
                     
                 </ul>    
+                <li>
+                    <div id="timer"><span id="time" class="h1 text-warning me-5">{{ timing }}:00</span></div>
+                </li>            
             </div>
         </div>
     </nav>
@@ -39,21 +39,14 @@
         <div class="card-body">
           <h5 class="card-title">Question {{forloop.counter}}</h5>
           <hr class="border border-danger border-1 opacity-100">
-          <p class="card-text">{{question.Question}}</p>
+          <p class="card-text h4 mb-3">{{question.Question}}</p>
 
           {% for answer in question.question.all %}
           <input type="radio" id="answer{{ answer.id }}" name="question{{ question.id }}" value="{{ answer.id }}" ondblclick="this.checked=false">
-          <label for="answer{{ answer.id }}">{{ answer.Answer }}</label>
+          
+          <label for="answer{{ answer.id }}" class="h6" style="font-family:'Times New Roman', Times, serif;">{{ answer.Answer }}</label>
           
           <br>
-          <script>
-          $('#answer{{ answer.id }}').dblclick(function () {
-      
-            // Clear radio button
-            alert("Hello");
-            $("#answer{{ answer.id }}").prop('checked', false);
-        })
-         </script>
           {% endfor %}
           
         </div>
