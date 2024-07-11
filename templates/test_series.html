@@ -9,7 +9,7 @@ Test Series
 <br><br>
 {% for test in tests %}
 <form action="/test_series/" method="post">
-{% csrf_token %}
+    {% csrf_token %}
 <div class="card w-100 w3-animate-zoom">
     <div class="card-body ">
       <h5 class="card-title fw-bold w3-animate-zoom">{{test.Name}}</h5>
