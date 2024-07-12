@@ -8,11 +8,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <title>Test {{request.session.test}}</title>
+    <style>
+    .prevent-select
+    {
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+    }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-dark py-4">
         <div class="container-fluid">
-            <a class="navbar-brand text-light" style="font-size: 150%;" href="">Chemistry</a>
+            <a class="navbar-brand text-light prevent-select" style="font-size: 150%;" href="">Chemistry</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" style="background-color: white;"></span>
             </button>
@@ -20,20 +28,20 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
                     <li class="nav-item">
-                        <a style="font-size: 120%;" class="nav-link link-light alert-heading mx-5" href="/test" >
+                        <a style="font-size: 120%;" class="nav-link link-light alert-heading mx-5 prevent-select" href="/test" >
                             Test {{request.session.test}}
                         </a>
                     </li>
                     
                 </ul>    
                 <li>
-                    <div id="timer"><span id="time" class="h1 text-warning me-5">{{ timing }}:00</span></div>
+                    <div id="timer"><span id="time" class="h1 text-warning me-5 prevent-select">{{ timing }}:00</span></div>
                 </li>            
             </div>
         </div>
     </nav>
 
-    <form action="//" method="post">
+    <form action="/result/" method="post">
         {% csrf_token %}
 
         {% for question in questions %}
@@ -41,13 +49,13 @@
             <div class="card container mt-5" >
                 <div class="card-body">
 
-                    <h5 class="card-title">Question {{forloop.counter}}</h5>
+                    <h5 class="card-title prevent-select">Question {{forloop.counter}}</h5>
                     <hr class="border border-danger border-1 opacity-100">
-                    <p class="card-text h4 mb-3">{{question.Question}}</p>
+                    <p class="card-text h4 mb-3 prevent-select">{{question.Question}}</p>
 
                     {% for answer in question.question.all %}
-                        <input type="radio" id="answer{{ answer.id }}" name="question{{ question.id }}" value="{{ answer.id }}" ondblclick="this.checked=false" onclick="check('{{answer.Answer}}', '{{question.id}}')">
-                        <label for="answer{{ answer.id }}" class="h6" style="font-family:'Times New Roman', Times, serif;">{{ answer.Answer }}</label><br>
+                        <input type="radio" id="answer{{ answer.id }}" name="question{{ question.id }}" value="{{ answer.id }}" ondblclick="this.checked=false">
+                        <label for="answer{{ answer.id }}" class="h6 prevent-select" style="font-family:'Times New Roman', Times, serif;" ondblclick="document.getElementById('answer{{answer.id}}').checked=false">{{ answer.Answer }}</label><br>
                     {% endfor %}
                 
                 </div>
@@ -55,13 +63,6 @@
 
         {% endfor %}
 
-        <script>
-            function check(answer, question)
-            {
-                console.log(answer);
-                console.log(question);
-            }
-        </script>
     <div class="container">    
     <hr class="border border-danger-subtle border-1 opacity-100">
         <input type="submit" value="  submit  " class="btn btn-outline-dark w3-right ms-3  my-5">
