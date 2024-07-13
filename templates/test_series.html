@@ -13,13 +13,24 @@ Test Series
 <div class="card w-100 w3-animate-zoom">
     <div class="card-body ">
       <h5 class="card-title fw-bold w3-animate-zoom">{{test.Name}}</h5>
-          <p class="card-text text-secondary small flex ">{{test.Total_Marks}} Marks {{test.num_Questions}} Questions {{test.Timing}} min 
+          <p class="card-text text-secondary small flex ">{{test.Total_Marks}}-Marks {{test.num_Questions}} Questions {{test.Timing}} min 
               <input class="w3-right w3-right-align btn btn-outline-dark "  name="testid" type="text" value="{{test.id}}" hidden>
-                <input class="w3-right w3-right-align btn btn-outline-dark" type="submit" value="      Start      ">
+            
+                {% if test.id in attempted_test_ids %}
+                <br>
+                    <input class="w3-right btn btn-outline-danger w3-animate-zoom mx-2 me-4" type="submit" value="     Analysis     " formaction="/analysis/" formmethod="post" >
+                    <input class="w3-right btn btn-outline-success w3-animate-zoom mx-2" type="submit" value="     Solutions     " formaction="/solutions/" formmethod="post" >
+                {%else%}
+            <input class="w3-right w3-right-align btn btn-outline-dark w3-animate-zoom" type="submit" value="      Start      ">
+
+                {% endif %}            
+
             </p>
         </div>
     </div>
 </form>
+{% endfor %}
+
 <script type="text/javascript"> 
     function preventBack() { 
         window.history.forward();  
@@ -29,7 +40,6 @@ Test Series
       
     window.onunload = function () { null }; 
 </script> 
-{% endfor %}
 
 
 {% endblock content %}

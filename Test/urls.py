@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import createuser, home, login, verify, signup, test_series, instruction, test_questions, result
+from .views import createuser, home, login, verify, signup, test_series, instruction, test_questions, result,analysis
 urlpatterns = [
     path('', home.Home.as_view(), name='home'),
     path('login/', login.Login.as_view(), name='login'),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('instruction/', instruction.Instruction.as_view(), name="instruction"),
     path('test/', test_questions.Test_Questions.as_view(), name="test"),
     path('submit/', result.Result.as_view(), name="submit"),
-    path('result/', result.set_result, name='result')
+    path('analysis/', analysis.Analysis.as_view(), name="analysis"),
+    
     
 ]

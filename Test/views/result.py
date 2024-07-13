@@ -6,7 +6,7 @@ from ..models.student import Student
 from ..models.test import Test
 from ..models.user import User
 from ..models.student_attempt import Student_Attempt
-from ..models.result import Result
+from ..models.result import Result as Student_Result
 
 class Result(View):
     def get(self, request):
@@ -28,7 +28,6 @@ class Result(View):
 
         attempt = len(answers)
 
-        print("Hello",answers)
         
         for i,j in answers.items():
             question = Question.objects.get(id=int(i))
@@ -38,14 +37,14 @@ class Result(View):
                 marks += question.Marks
                 correct += 1
             else:
-                marks -= (question.Marks/3)
+                marks -= (question.Marks/4)
 
             student_attempt = Student_Attempt(Student=student, Test=test, Question=question, Answer=ans)
             student_attempt.save()
         
-        acc = (attempt/correct)*100
+        acc = (correct/attempt)*100
 
-        result = Result(Test = test, Student=student, Total_Marks = marks, Total_Attempted = attempt, Accuracy = acc )
+        result = Student_Result(Test = test, Student=student, Total_Marks = marks, Total_Attempted = attempt, Accuracy = acc )
         result.save()
 
-        return redirect('result')
+        return redirect('analysis')
