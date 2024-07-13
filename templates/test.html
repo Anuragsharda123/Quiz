@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/Content/Downloads/static/images/boo.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -17,10 +18,10 @@
     }
     </style>
 </head>
-<body>
+<body onload="goback()">
     <nav class="navbar navbar-expand-lg bg-dark py-4">
         <div class="container-fluid">
-            <a class="navbar-brand text-light prevent-select" style="font-size: 150%;" href="">Chemistry</a>
+            <a href="#" class="navbar-brand text-light"><img class="rounded-1" src="/Content/Downloads/static/images/boo.png" height="50vh" width="85vw" alt="Utkarsh Academy"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" style="background-color: white;"></span>
             </button>
@@ -28,7 +29,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
                     <li class="nav-item">
-                        <a style="font-size: 120%;" class="nav-link link-light alert-heading mx-5 prevent-select" href="/test" >
+                        <a style="font-size: 120%;" class="nav-link link-light alert-heading mx-5 prevent-select" href="#" >
                             Test {{request.session.test}}
                         </a>
                     </li>
@@ -70,6 +71,36 @@
     </div>
 </form>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[action="/submit/"]');
+    const timerElement = document.getElementById('time');
+    let timeLeft = parseInt(timerElement.textContent.split(':')[0]) * 60; // Convert minutes to seconds
+
+    // Function to format time as mm:ss
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+
+    // Update the timer display
+    function updateTimer() {
+        timerElement.textContent = formatTime(timeLeft);
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            form.submit();
+        }
+        timeLeft -= 1;
+    }
+
+    // Initialize the timer
+    updateTimer();
+    const timerInterval = setInterval(updateTimer, 1000);
+});
+</script>
+
+
 
 <script type="text/javascript"> 
     function preventBack() { 
@@ -79,6 +110,16 @@
     setTimeout("preventBack()", 0); 
       
     window.onunload = function () { null }; 
+</script>
+
+<script>
+    function goback()
+    {
+        if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+            // Redirect to 'test_series.html'
+            window.location.href = '/test_series';
+        }
+    }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
