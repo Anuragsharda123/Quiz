@@ -48,9 +48,40 @@
         </div>
     </nav>
 
+<div class="container mt-5">
+        <h1 class="mb-4">Instructions for the Test</h1>
+        <ol class="h4" style="font-family: 'Times New Roman', Times, serif;">
+            <li>Ensure you have a stable internet connection throughout the test.</li>
+            <li>Choose a quiet place to take the test without disturbances.</li>
+            <li>Have all required materials ready before starting.</li>
+            <li>Read each question carefully before selecting an answer.</li>
+            <li>Manage your time effectively and keep an eye on the countdown timer.</li>
+            <li>Once you submit an answer, you may not be able to change it.</li>
+            <li>Do not use any unfair means or external help.</li>
+            <li>Contact support immediately if you encounter any technical issues.</li>
+            <li>Submit your answers before the timer runs out.</li>
+            <li>Review your answers if time permits before final submission.</li>
+            <li>Do not refresh the page or navigate away from the test page.</li>
+        </ol>
+        <br>
+        <h3 class="text-danger">Note: <span class="text-primary">If You refresh the page then you will automatically navigate to starting page, so Avoid to <b>Refresh</b></span></h3><br>
+        <a href="/test_series" class=" nav-link link-primary"><-- Go Back</a>
+        <br>
+        <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+              <label class="form-check-label" for="invalidCheck">
+                Agree to terms and conditions
+              </label>
+              <div class="invalid-feedback">
+                You must agree before submitting.
+              </div>
+            </div>
+        </div>
+        </div>
 
-<p>{{request.session.test}}</p>
-<a href="/test_series" class=" link-primary">Go to Tests</a>
+        
+
 <br>
 <a href="/test" class=" btn btn-outline-danger w3-bottom">Start Test</a> 
 
