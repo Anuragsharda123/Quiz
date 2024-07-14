@@ -3,3 +3,5 @@
 /Test/migrations/__pycache__
 /Test/models/__pycache__
 /Test/views/__pycache__
+/Assests
+Test/migrations/0012_notes.py

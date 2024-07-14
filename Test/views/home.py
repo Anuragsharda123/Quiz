@@ -9,6 +9,6 @@ class Home(View):
             if(request.session['user']):
                 user = User.objects.get(Email = request.session['user'])
                 student = Student.objects.get(Email=user)
-                return render(request, 'header.html', {'student':student})
+                return render(request, 'index.html', {'student':student})
         except:
-            return render(request, "header.html")
+            return render(request, "index.html")

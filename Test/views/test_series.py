@@ -8,11 +8,15 @@ from ..models.student import Student
 class Test_Series(View):
     def get(self, request):
         tests = Test.objects.all()
-        user = User.objects.get(Email = request.session['user'])
-        student = Student.objects.get(Email=user)
-        result = Result.objects.filter(Student=student)
+        attempted_test_ids = None
+        try:
+            user = User.objects.get(Email = request.session['user'])
+            student = Student.objects.get(Email=user)
+            attempted_test_ids = Result.objects.filter(Student=student).values_list('Test', flat=True)
+            result = Result.objects.filter(Student=student)
+        except:
+            pass
 
-        attempted_test_ids = Result.objects.filter(Student=student).values_list('Test', flat=True)
 
         data = {
             'tests': tests,
