@@ -8,7 +8,7 @@ class Instruction(View):
                 return render(request, "instruction.html")
 
         except:
-            return redirect('home')
+            return redirect('test_series')
     
     def post(self, request):
         pass

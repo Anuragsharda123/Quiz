@@ -14,6 +14,14 @@
       {
         color: red;
       }
+      .correct-answer {
+            color: green;
+            font-weight: bold;
+        }
+        .incorrect-answer {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -36,9 +44,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" href="/test_series">Test Series</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="/">Contact Us</a>
                     </li>
                 </ul>
                 {% if request.session.user %}
