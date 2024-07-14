@@ -23,8 +23,14 @@
       </div>
     </h2>
     <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <form action="/solutions/" method="post">
+      {% csrf_token %}
+        
+        <br><input type="number" name="testid" class="btn btn-outline-success w3-right" value="{{test}}" hidden>
         <br><input type="submit" class="btn btn-outline-success w3-right" value="Solutions">
-      <div class="accordion-body">
+      
+      </form>
+        <div class="accordion-body">
         
       </div>
     </div>

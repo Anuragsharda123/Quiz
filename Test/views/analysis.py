@@ -27,7 +27,7 @@ class Analysis(View):
             attempted_student.save()
 
             # return render(request, 'analysis.html')
-            return render(request, 'analysis.html', {'student':attempted_student})
+            return render(request, 'analysis.html', {'student':attempted_student, 'test':test.id})
         except:
             return redirect('test_series')
     
@@ -52,4 +52,4 @@ class Analysis(View):
         attempted_student.save()
 
         # return render(request, 'analysis.html')
-        return render(request, 'analysis.html', {'student':attempted_student})
+        return render(request, 'analysis.html', {'student':attempted_student, 'test':test.id})
