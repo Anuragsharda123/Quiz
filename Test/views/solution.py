@@ -26,7 +26,7 @@ class Solution(View):
                 correct_answer = question.question.get(is_Correct=True)
                 selected_answer = student_attempts.get(Question=question).Answer if student_attempts.filter(Question=question).exists() else None
                 questions_with_answers.append({
-                    'question_text': question.Question,
+                    'question_text': question,
                     'answers': question.question.all(),
                     'correct_answer_id': correct_answer.id,
                     'selected_answer_id': selected_answer.id if selected_answer else None,

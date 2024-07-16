@@ -50,7 +50,15 @@
                             {% comment %} <input type="radio" id="answer{{ answer.id }}" name="question{{ question.id }}" value="{{ answer.id }}" disabled {% if answer.id == question.selected_answer_id %}checked{% endif %}> {% endcomment %}
                             <label for="answer{{ answer.id }}" class="h6 prevent-select" style="font-family:'Times New Roman', Times, serif;">{{ answer.Answer }}</label>
                         </div>
-                    {% endfor %}
+                        {% endfor %}
+                    <div class="border border-2 rounded-4 my-2">
+                        <label class="h4 m-3">Solution:</label><br>
+                        {% if question.question_text.text_Solution %}
+                            <textarea class="ms-5 mb-4 ps-3" rows="5" cols="120" disabled> {{question.question_text.text_Solution}} </textarea>
+                        {% else %}
+                            <img class="ms-5 mb-4 img-thumbnail" src="/Content/Downloads/{{question.question_text.img_Solution}}" alt="Solution" width="auto">
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         {% endfor %}

@@ -8,7 +8,11 @@
     <section class="hero-section">
         <h1>Welcome to Chemistry Test Prep</h1>
         <p>Your ultimate resource for mastering chemistry exams</p>
-        <a href="/register" class="btn btn-primary btn-hero">Get Started</a>
+        {% if request.session.user %}
+            <a href="/test_series" class="btn btn-primary btn-hero">Get Started</a>
+        {% else %}
+            <a href="/login" class="btn btn-primary btn-hero">Get Started</a>
+        {% endif %}
     </section>
 
     <section id="features" class="feature-section section mb-1">

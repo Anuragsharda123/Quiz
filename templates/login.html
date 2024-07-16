@@ -10,7 +10,7 @@
 <div class="containrer">
     <div class="p-4 m-4">
         <div class="col-lg-5 mx-auto border rounded pt-4">
-            <h3 class="alert alert-light border rounded mx-3 mt-2 mb-4">Login</h3>            
+            <h3 class="alert  border rounded mx-3 mt-2 mb-4">Login</h3>            
             <form action="/login/" method="post">
                 
                 {% csrf_token %} 
@@ -24,18 +24,18 @@
                 <!-- email -->
                 <div class="form-group mx-3 my-2">
                   <label for="">Email</label>
-                  <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" class="form-control form-control-sm btn btn-outline-secondary w3-animate-zoom" placeholder="example@gmail.com" required>
+                  <input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$" class="form-control form-control-sm btn btn-outline-light w3-animate-zoom" placeholder="example@gmail.com" required>
                 </div>
 
                 <!-- password -->
                 <div class="form-group mx-3 my-2">
                   <label for="">Password</label>
-                  <input type="password" name="password" pattern="^.{8,}$" class="form-control form-control-sm btn btn-outline-secondary w3-animate-zoom" placeholder="************" required>
+                  <input type="password" name="password" pattern="^.{8,}$" class="form-control form-control-sm btn btn-outline-light w3-animate-zoom" placeholder="************" required>
                 </div>
 
                 <div class="form-group mx-3 mt-5 mb-3 w3-animate-zoom">
-                    <input class="btn btn-outline-dark col-lg-3" type="submit" value="Login" onclick="noback()">
-                    <a href="/signup">Don't have an account! 😅</a>
+                    <input class="btn btn-outline-warning col-lg-3" type="submit" value="Login" onclick="noback()">
+                    <a href="/signup" class="nav-link w3-right">Don't have an account! 😅</a>
                 </div>
 
             </form>
