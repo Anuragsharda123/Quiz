@@ -15,6 +15,7 @@ class Result(View):
     def post(self, request):
         marks = 0
         correct = 0
+        acc = 0
         user = User.objects.get(Email=request.session['user'])
         student = Student.objects.get(Email=user)
         test = Test.objects.get(id=int(request.session['test']))
@@ -42,7 +43,8 @@ class Result(View):
             student_attempt = Student_Attempt(Student=student, Test=test, Question=question, Answer=ans)
             student_attempt.save()
         
-        acc = (correct/attempt)*100
+        if(marks!=0):
+            acc = (correct/attempt)*100
 
         result = Student_Result(Test = test, Student=student, Total_Marks = marks, Total_Attempted = attempt, Accuracy = acc )
         result.save()

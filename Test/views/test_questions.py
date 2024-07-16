@@ -6,16 +6,16 @@ from django.views import View
 
 class Test_Questions(View):
     def get(self, request):
-        try:
-            test = Test.objects.get(id=int(request.session['test']))
-            
-            questions = Question.objects.filter(Test=test).prefetch_related('question')
-            data = {
-                'test': test,
-                'questions': questions,
-                'timing': test.Timing
-                }
+        # try:
+        test = Test.objects.get(id=int(request.session['test']))
+        
+        questions = Question.objects.filter(Test=test).prefetch_related('question')
+        data = {
+        'test': test,
+        'questions': questions,
+        'timing': test.Timing
+        }
 
-            return render(request, 'test.html', data)
-        except:
-            return redirect('test_series')
+        return render(request, 'test.html', data)
+        # except:
+            # return redirect('test_series')

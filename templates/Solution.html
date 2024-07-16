@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-    {% for question in questions %}
+    {% comment %} {% for question in questions %}
     
         <div class="card container mt-5 w3-animate-zoom" >
             <div class="card-body">
@@ -34,5 +34,24 @@
             </div>
         </div>
 
-    {% endfor %}
+    {% endfor %} {% endcomment %}
+
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Test Solutions</h1>
+        {% for question in questions %}
+            <div class="card container mt-5 w3-animate-zoom">
+                <div class="card-body">
+                    <h5 class="card-title prevent-select">Question {{ forloop.counter }}</h5>
+                    <hr class="border border-danger border-1 opacity-100">
+                    <p class="card-text h4 mb-3 prevent-select">{{ question.question_text }}</p>
+                    {% for answer in question.answers %}
+                        <div class="{% if answer.id == question.correct_answer_id %}correct-answer{% elif answer.id == question.selected_answer_id and answer.id != question.correct_answer_id %}incorrect-answer{% endif %}">
+                            {% comment %} <input type="radio" id="answer{{ answer.id }}" name="question{{ question.id }}" value="{{ answer.id }}" disabled {% if answer.id == question.selected_answer_id %}checked{% endif %}> {% endcomment %}
+                            <label for="answer{{ answer.id }}" class="h6 prevent-select" style="font-family:'Times New Roman', Times, serif;">{{ answer.Answer }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
 {% endblock content %}

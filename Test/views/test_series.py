@@ -7,7 +7,7 @@ from ..models.student import Student
 
 class Test_Series(View):
     def get(self, request):
-        tests = Test.objects.all()
+        tests = Test.objects.all().order_by('-id')
         attempted_test_ids = None
         try:
             user = User.objects.get(Email = request.session['user'])
