@@ -12,7 +12,7 @@ class Test_Series(View):
         try:
             if (request.GET.get('catagory_id')):
                 c_id = request.GET.get('catagory_id')
-                print(c_id)
+                
         except:
             pass
         
