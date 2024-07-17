@@ -1,13 +1,22 @@
-from django.shortcuts import render, redirect
 from django.views import View
 from ..models.test import Test
 from ..models.user import User
 from ..models.result import Result
 from ..models.student import Student
+from ..models.catagory import Catagory
+from django.shortcuts import render, redirect
 
-class Test_Series(View):
+class Test_Series(View): 
     def get(self, request):
-        tests = Test.objects.all().order_by('-id')
+        c_id = Catagory.objects.all()[0].id
+        try:
+            if (request.GET.get('catagory_id')):
+                c_id = request.GET.get('catagory_id')
+                print(c_id)
+        except:
+            pass
+        
+        tests = Test.test_by_catagory(c_id)
         attempted_test_ids = None
         try:
             user = User.objects.get(Email = request.session['user'])
@@ -17,8 +26,10 @@ class Test_Series(View):
         except:
             pass
 
-
+        catagory = Catagory.objects.all()
         data = {
+            'check_catagory':int(c_id),
+            'catagories':catagory,
             'tests': tests,
             'attempted_test_ids': attempted_test_ids,
         }

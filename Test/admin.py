@@ -7,9 +7,13 @@ from .models.result import Result
 from .models.test import Test
 from .models.student_attempt import Student_Attempt
 from .models.note import Notes
+from .models.catagory import Catagory
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ['Email', 'Password']
+
+class CatagoryAdmin(admin.ModelAdmin):
+    list_display = ['Name']
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ['Fname', 'Lname', 'Email', 'Contact']
@@ -45,3 +49,4 @@ admin.site.register(Answer, AnswerAdmin)
 admin.site.register(Result, ResultAdmin)
 admin.site.register(Student_Attempt, AttemptAdmin)
 admin.site.register(Notes, NotesAdmin)
+admin.site.register(Catagory, CatagoryAdmin)
