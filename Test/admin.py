@@ -25,7 +25,8 @@ class NotesAdmin(admin.ModelAdmin):
     list_display = ['Title']
 
 class ResultAdmin(admin.ModelAdmin):
-    list_display = ['Test', 'Student', 'Total_Marks', 'Accuracy']
+    list_display = ['Test', 'Student', 'Rank', 'Total_Marks', 'Accuracy', 'Percentile']
+    ordering = ('Student',)
 
 class AnswerAdmin(admin.ModelAdmin):
     list_display = ['Question', 'Answer']
@@ -40,6 +41,11 @@ class QuestionAdmin(admin.ModelAdmin):
 class AttemptAdmin(admin.ModelAdmin):
     list_display = ['Student', 'Test', 'Question', 'Answer']
 
+
+
+admin.site.site_header = 'Utkarsh Academy Admin'
+admin.site.index_title = 'Tables'
+admin.site.site_title = 'HTML title from adminsitration'
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Student, StudentAdmin)
