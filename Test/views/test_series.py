@@ -1,4 +1,5 @@
 from django.views import View
+from datetime import datetime
 from ..models.test import Test
 from ..models.user import User
 from ..models.result import Result
@@ -9,6 +10,8 @@ from django.shortcuts import render, redirect
 class Test_Series(View): 
     def get(self, request):
         c_id = Catagory.objects.all()[0].id
+        current_time = datetime.now()
+        
         try:
             if (request.GET.get('catagory_id')):
                 c_id = request.GET.get('catagory_id')
@@ -22,12 +25,13 @@ class Test_Series(View):
             user = User.objects.get(Email = request.session['user'])
             student = Student.objects.get(Email=user)
             attempted_test_ids = Result.objects.filter(Student=student).values_list('Test', flat=True)
-            result = Result.objects.filter(Student=student)
+            
         except:
             pass
 
         catagory = Catagory.objects.all()
-        data = {
+        data = { 
+            'current_time': current_time,
             'check_catagory':int(c_id),
             'catagories':catagory,
             'tests': tests,

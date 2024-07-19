@@ -48,7 +48,12 @@
                             <input class="w3-right btn btn-outline-danger w3-animate-zoom mx-2 me-4 mt-1" type="submit" value="     Analysis     " formaction="/analysis/" formmethod="post" >
                             <input class="w3-right btn btn-outline-success w3-animate-zoom mx-2 me-4 mt-1" type="submit" value="    Solutions    " formaction="/solutions/" formmethod="post" >
                         {%else%}
-                        <input class="w3-right w3-right-align btn btn-outline-dark w3-animate-zoom me-4" type="submit" value="      Start      ">
+                            {% if test.Start_at|date:"dmYHis" <= current_time|date:"dmYHis" %}
+
+                                <input class="w3-right w3-right-align btn btn-outline-dark w3-animate-zoom me-4" type="submit" value="      Start      ">    
+                            {% else %}<br>
+                                <input class="w3-right w3-right-align btn btn-outline-dark w3-animate-zoom me-4" type="submit" value="      Start      " disabled>
+                            {% endif %}
 
                         {% endif %}            
 

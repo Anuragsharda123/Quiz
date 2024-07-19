@@ -1,9 +1,11 @@
 from django.db import models
 from .catagory import Catagory
+from django.utils import timezone
 
 class Test(models.Model):
     Catagory = models.ForeignKey(Catagory, null=True, default=None, on_delete=models.CASCADE)
     Name = models.CharField(max_length=30, unique=True)
+    Start_at = models.DateTimeField(default=timezone.now())
     Timing = models.PositiveIntegerField()
     num_Questions = models.PositiveIntegerField()
     Total_Marks = models.PositiveIntegerField()
