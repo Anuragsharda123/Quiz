@@ -8,9 +8,11 @@ class Test_Questions(View):
     def get(self, request):
         try:
             test = Test.objects.get(id=int(request.session['test']))
-            
+
             questions = Question.objects.filter(Test=test).prefetch_related('question')
+            q_id = questions[0].id
             data = {
+            'f_ques':q_id,
             'test': test,
             'questions': questions,
             'timing': test.Timing
