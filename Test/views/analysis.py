@@ -42,7 +42,7 @@ class Analysis(View):
         number_of_students = attempted_students.count() + 1
 
         for i in attempted_students:
-            if attempted_student.Total_Marks <= i.Total_Marks:
+            if attempted_student.Obtained_Marks <= i.Total_Marks:
                 rank += 1
             
         attempted_student.Rank = rank

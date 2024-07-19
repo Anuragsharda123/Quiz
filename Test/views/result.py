@@ -46,7 +46,7 @@ class Result(View):
         if(marks!=0):
             acc = (correct/attempt)*100
 
-        result = Student_Result(Test = test, Student=student, Total_Marks = marks, Total_Attempted = attempt, Accuracy = acc )
+        result = Student_Result(Test = test, Student=student, Total_Marks = test.Total_Marks, Obtained_Marks = marks, Total_Attempted = attempt, Accuracy = acc )
         result.save()
 
         return redirect('analysis')

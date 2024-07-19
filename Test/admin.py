@@ -25,7 +25,7 @@ class NotesAdmin(admin.ModelAdmin):
     list_display = ['Title']
 
 class ResultAdmin(admin.ModelAdmin):
-    list_display = ['Test', 'Student', 'Rank', 'Total_Marks', 'Accuracy', 'Percentile']
+    list_display = ['Test', 'Student', 'Rank', 'Total_Marks', 'Obtained_Marks', 'Accuracy', 'Percentile']
     ordering = ('Student',)
 
 class AnswerAdmin(admin.ModelAdmin):
