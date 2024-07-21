@@ -1,5 +1,6 @@
 from pathlib import Path
 import dj_database_url
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,12 +9,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o-0(#5=jlhj!s_@x*4li+oj+qwco+gluqrhka@549p5a_hhn6z'
+# SECRET_KEY = 'django-insecure-o-0(#5=jlhj!s_@x*4li+oj+qwco+gluqrhka@549p5a_hhn6z'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+# ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -80,8 +84,8 @@ DATABASES = {
     }
 }
 
-
-DATABASES['default'] = dj_database_url.parse("postgresql://quiz_wexf_user:kvToxtMgq7AMIzv1owFQELwwmUJuQm0U@dpg-cqeeok9u0jms739a5j70-a.oregon-postgres.render.com/quiz_wexf")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
