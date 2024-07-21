@@ -1,5 +1,6 @@
 asgiref==3.8.1
 distlib==0.3.8
+dj-database-url==2.2.0
 Django==5.0.6
 django-mssql-backend==2.8.1
 filelock==3.13.1
@@ -9,12 +10,14 @@ greenlet==3.0.3
 kiwisolver==1.4.5
 libclang==18.1.1
 mssql-django==1.5
+mysqlclient==2.2.4
 namex==0.0.8
 numpy==1.26.4
 packaging==23.2
 pillow==10.2.0
 platformdirs==4.2.0
 psycopg2==2.9.9
+psycopg2-binary==2.9.9
 Pygments==2.18.0
 pyodbc==5.1.0
 pyparsing==3.1.1

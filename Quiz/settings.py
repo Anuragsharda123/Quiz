@@ -14,10 +14,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-
-# ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+DEBUG = True
+database_url = "postgresql://quiz_wexf_user:kvToxtMgq7AMIzv1owFQELwwmUJuQm0U@dpg-cqeeok9u0jms739a5j70-a.oregon-postgres.render.com/quiz_wexf"
+ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -84,7 +84,7 @@ DATABASES = {
     }
 }
 
-database_url = os.environ.get("DATABASE_URL")
+
 DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
