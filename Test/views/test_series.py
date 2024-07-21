@@ -9,40 +9,43 @@ from django.shortcuts import render, redirect
 
 class Test_Series(View): 
     def get(self, request):
-        c_id = Catagory.objects.all()[0].id
-        current_time = datetime.now()
-        
         try:
-            if (request.GET.get('catagory_id')):
-                c_id = request.GET.get('catagory_id')
-                
-        except:
-            pass
-        
-        tests = Test.test_by_catagory(c_id)
-        attempted_test_ids = None
-        try:
-            user = User.objects.get(Email = request.session['user'])
-            student = Student.objects.get(Email=user)
-            attempted_test_ids = Result.objects.filter(Student=student).values_list('Test', flat=True)
+            c_id = Catagory.objects.all()[0].id
+            current_time = datetime.now()
             
-        except:
-            pass
+            try:
+                if (request.GET.get('catagory_id')):
+                    c_id = request.GET.get('catagory_id')
+                    
+            except:
+                pass
+            
+            tests = Test.test_by_catagory(c_id)
+            attempted_test_ids = None
+            try:
+                user = User.objects.get(Email = request.session['user'])
+                student = Student.objects.get(Email=user)
+                attempted_test_ids = Result.objects.filter(Student=student).values_list('Test', flat=True)
+                
+            except:
+                pass
 
-        catagory = Catagory.objects.all()
-        data = { 
-            'current_time': current_time,
-            'check_catagory':int(c_id),
-            'catagories':catagory,
-            'tests': tests,
-            'attempted_test_ids': attempted_test_ids,
-        }
-        
-        try:
-            del request.session['test']
+            catagory = Catagory.objects.all()
+            data = { 
+                'current_time': current_time,
+                'check_catagory':int(c_id),
+                'catagories':catagory,
+                'tests': tests,
+                'attempted_test_ids': attempted_test_ids,
+            }
+            
+            try:
+                del request.session['test']
+            except:
+                pass
+            return render(request, 'test_series.html', data)
         except:
-            pass
-        return render(request, 'test_series.html', data)
+            return render(request, 'test_series.html')
     
 
     def post(self, request):
