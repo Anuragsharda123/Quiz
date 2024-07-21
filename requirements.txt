@@ -7,6 +7,7 @@ filelock==3.13.1
 flatbuffers==24.3.25
 fonttools==4.47.2
 greenlet==3.0.3
+gunicorn==22.0.0
 kiwisolver==1.4.5
 libclang==18.1.1
 mssql-django==1.5
