@@ -14,8 +14,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 # DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+
 # ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
@@ -125,7 +126,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = "Content/Downloads/"
 MEDIA_ROOT = BASE_DIR
-STATIC_ROOT = BASE_DIR/'productionfiles'
+
+STATIC_ROOT = BASE_DIR/'Files'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
