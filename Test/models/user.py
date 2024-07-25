@@ -6,3 +6,7 @@ class User(models.Model):
 
     def __str__(self):
         return self.Email
+    
+    @staticmethod
+    def isExist(Email):
+        return User.objects.filter(Email=Email)

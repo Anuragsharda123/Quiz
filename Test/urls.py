@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from .views import createuser, home, login, verify, signup, test_series, instruction, test_questions, result,analysis, solution,notes
+from .views import createuser, home, login, verify, signup, test_series, instruction, test_questions, result,analysis, solution,notes, forget, otp
 urlpatterns = [
     path('', home.Home.as_view(), name='home'),
     path('login/', login.Login.as_view(), name='login'),
+    path('forget/', forget.Forget.as_view(), name='forget'),
+    path('otp/', otp.OTP.as_view(), name='otp'),
+    path('reset_password/',otp.ResetPassword.as_view(), name='reset_password'),
     path('logout/', login.Logout, name='logout'),
     path('createuser/', createuser.CreateUser.as_view(), name='createuser'),
     path('verify/', verify.Verify.as_view(), name='verify'),

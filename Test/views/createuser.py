@@ -28,13 +28,12 @@ class CreateUser(View):
             password1 = request.POST.get('password1')
             password2 = request.POST.get('password2')
 
-            def isExist(Email):
-                return User.objects.filter(Email=Email)
-
+            isExist = User.isExist(Email)
+            
             if(password1!=password2):
                 error_message = "Password Mismatch"
 
-            if(isExist(Email)):
+            if(isExist):
                 error_message="Email already Exists"
 
             if(not error_message):
