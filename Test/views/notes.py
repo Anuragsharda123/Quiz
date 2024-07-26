@@ -19,6 +19,6 @@ class Notes(View):
             
             catagory = Catagory.objects.all()
             notes = Note.notes_by_catagory(c_id)
-            return render(request, "notes.html" , {'notes':notes, 'catagories':catagory, 'check_catagory':c_id})
+            return render(request, "notes.html" , {'notes':notes, 'catagories':catagory, 'check_catagory':int(c_id)})
         except:
             return render(request, "notes.html")
