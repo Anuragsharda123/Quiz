@@ -20,7 +20,7 @@ class Analysis(View):
                 if attempted_student.Total_Marks <= i.Total_Marks:
                     rank += 1
             
-            attempted_student.Rank = rank
+            attempted_student.Student_Rank = rank
             
             percentile = ((number_of_students-(rank-1))/number_of_students)*100
             attempted_student.Percentile = percentile
@@ -45,7 +45,7 @@ class Analysis(View):
             if attempted_student.Obtained_Marks <= i.Total_Marks:
                 rank += 1
             
-        attempted_student.Rank = rank
+        attempted_student.Student_Rank = rank
             
         percentile = ((number_of_students-(rank-1))/number_of_students)*100
         attempted_student.Percentile = percentile
