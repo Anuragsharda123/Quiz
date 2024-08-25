@@ -3,7 +3,7 @@ from .catagory import Catagory
 
 class Notes(models.Model):
     Catagory = models.ForeignKey(Catagory, null=True, default=None, on_delete=models.CASCADE)
-    Title = models.CharField()
+    Title = models.CharField(max_length=100)
     document = models.FileField(upload_to='Assests/Notes/',)
 
     def __str__(self):
