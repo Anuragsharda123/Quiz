@@ -75,17 +75,6 @@ EMAIL_PORT = 587
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Test',
-#         'USER':'postgres',
-#         'PASSWORD':'Hello@111',
-#         'HOST':'localhost',
-#         # 'PORT':'3306',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -93,9 +82,9 @@ DATABASES = {
         'USER':'root',
         'PASSWORD':'123456',
         'HOST':'localhost',
-        # 'PORT':'3306',
     }
 }
+
 
 # database_url = os.environ.get("DATABASE_URL")
 # DATABASES['default'] = dj_database_url.parse(database_url)
